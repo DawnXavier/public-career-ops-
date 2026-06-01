@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>岗位筛选记录工具</title>
+  <!-- style.css 负责页面的外观样式 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <div class="container">
+      <h1>岗位筛选记录工具</h1>
+      <p>记录投递进度，按状态快速筛选岗位。</p>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <section class="panel">
+      <h2>新增岗位</h2>
+
+      <!-- 这个表单用来收集岗位信息，提交后由 app.js 保存到 localStorage -->
+      <form id="jobForm" class="job-form">
+        <label>
+          公司名称
+          <input id="companyName" type="text" placeholder="例如：星河科技" required>
+        </label>
+
+        <label>
+          岗位名称
+          <input id="jobTitle" type="text" placeholder="例如：前端开发实习生" required>
+        </label>
+
+        <label>
+          城市
+          <input id="city" type="text" placeholder="例如：上海" required>
+        </label>
+
+        <label>
+          月薪
+          <input id="salary" type="text" placeholder="例如：8k-12k">
+        </label>
+
+        <label>
+          岗位类型
+          <select id="jobType">
+            <option value="全职">全职</option>
+            <option value="实习">实习</option>
+            <option value="兼职">兼职</option>
+            <option value="远程">远程</option>
+          </select>
+        </label>
+
+        <label>
+          投递状态
+          <select id="status">
+            <option value="未投递">未投递</option>
+            <option value="已投递">已投递</option>
+            <option value="面试中">面试中</option>
+            <option value="已拒绝">已拒绝</option>
+            <option value="已拿offer">已拿offer</option>
+          </select>
+        </label>
+
+        <label class="full-width">
+          备注
+          <textarea id="note" rows="4" placeholder="例如：需要准备作品集，HR 周五前反馈"></textarea>
+        </label>
+
+        <button type="submit" class="save-button">保存岗位</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="list-header">
+        <div>
+          <h2>岗位列表</h2>
+          <p id="jobCount">共 0 条记录</p>
+        </div>
+
+        <label class="filter-box">
+          按状态筛选
+          <select id="statusFilter">
+            <option value="全部">全部</option>
+            <option value="未投递">未投递</option>
+            <option value="已投递">已投递</option>
+            <option value="面试中">面试中</option>
+            <option value="已拒绝">已拒绝</option>
+            <option value="已拿offer">已拿offer</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- app.js 会把岗位卡片显示到这个区域 -->
+      <div id="jobList" class="job-list"></div>
+    </section>
+  </main>
+
+  <!-- app.js 负责保存、读取、渲染和删除岗位数据 -->
+  <script src="app.js"></script>
+</body>
+</html>
